@@ -64,6 +64,10 @@
 	
 	var _ProfileList2 = _interopRequireDefault(_ProfileList);
 	
+	var _FeaturedProfile = __webpack_require__(171);
+	
+	var _FeaturedProfile2 = _interopRequireDefault(_FeaturedProfile);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89,7 +93,8 @@
 					null,
 					'Hello React',
 					_react2.default.createElement(_StartupList2.default, null),
-					_react2.default.createElement(_ProfileList2.default, null)
+					_react2.default.createElement(_ProfileList2.default, null),
+					_react2.default.createElement(_FeaturedProfile2.default, null)
 				);
 			}
 		}]);
@@ -20428,7 +20433,7 @@
 					company: ''
 				},
 	
-				profiles: [{ id: 0, name: 'Josh Bruno', company: 'Hometeam', description: '' }, { id: 1, name: 'Elon Musk', company: 'Tesla', description: '' }, { id: 2, name: 'Steve Wozniack', company: 'Primary Data', description: '' }, { id: 3, name: 'Elizabeth Holmes', company: 'Theranos', description: '' }]
+				profiles: [{ id: 0, name: 'Josh Bruno', company: 'Hometeam', description: 'CEO of Hometeam' }, { id: 1, name: 'Elon Musk', company: 'Tesla', description: 'CEO of Tesla' }, { id: 2, name: 'Steve Wozniack', company: 'Primary Data', description: 'Chief Scientist of Primary Data' }, { id: 3, name: 'Elizabeth Holmes', company: 'Theranos', description: 'CEO of Theranos' }]
 			};
 			return _this2;
 		}
@@ -20459,7 +20464,209 @@
 		}, {
 			key: 'selectProfile',
 			value: function selectProfile(profileId) {
-				console.log('selectProfile: ' + profileId);
+				var selectedProfile = this.state.profiles[profileId];
+				console.log('selectProfile: ' + JSON.stringify(selectedProfile));
+	
+				// this.setState({
+				// 	profiles: selectedProfile
+				// })
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this = this;
+				var profileList = this.state.profiles.map(function (profile, i) {
+					return _react2.default.createElement(_ListItem2.default, { key: i, text: profile, click: _this.selectProfile });
+				});
+	
+				return _react2.default.createElement(
+					'div',
+					{ className: 'list-box' },
+					_react2.default.createElement(
+						'ol',
+						null,
+						profileList
+					),
+					_react2.default.createElement(
+						'h2',
+						null,
+						' Add Profile'
+					),
+					_react2.default.createElement('input', { id: 'name', onChange: this.updateProfile, type: 'text', placeholder: 'Name' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('input', { id: 'company', onChange: this.updateProfile, type: 'text', placeholder: 'Company' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'a',
+						{ onClick: this.addProfile, href: '#' },
+						'Add Employees'
+					)
+				);
+			}
+		}]);
+	
+		return ProfileList;
+	}(_react.Component);
+	
+	exports.default = ProfileList;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ProfileList = __webpack_require__(172);
+	
+	var _ProfileList2 = _interopRequireDefault(_ProfileList);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FeaturedProfile = function (_Component) {
+		_inherits(FeaturedProfile, _Component);
+	
+		function FeaturedProfile(props, context) {
+			_classCallCheck(this, FeaturedProfile);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FeaturedProfile).call(this, props, context));
+	
+			_this.displayDescription = _this.displayDescription.bind(_this);
+	
+			return _this;
+		}
+	
+		_createClass(FeaturedProfile, [{
+			key: 'displayDescription',
+			value: function displayDescription() {}
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				return _react2.default.createElement(
+					'div',
+					{ className: 'list-box' },
+					_react2.default.createElement(
+						'h2',
+						null,
+						' Featured Profile '
+					),
+					_react2.default.createElement(
+						'ol',
+						null,
+						_react2.default.createElement(
+							'li',
+							null,
+							'description goes here'
+						)
+					)
+				);
+			}
+		}]);
+	
+		return FeaturedProfile;
+	}(_react.Component);
+	
+	exports.default = FeaturedProfile;
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ListItem = __webpack_require__(169);
+	
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ProfileList = function (_Component) {
+		_inherits(ProfileList, _Component);
+	
+		function ProfileList(props, context) {
+			_classCallCheck(this, ProfileList);
+	
+			var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(ProfileList).call(this, props, context));
+	
+			_this2.addProfile = _this2.addProfile.bind(_this2);
+			_this2.updateProfile = _this2.updateProfile.bind(_this2);
+			_this2.selectProfile = _this2.selectProfile.bind(_this2);
+	
+			_this2.state = {
+				profile: {
+					name: '',
+					company: ''
+				},
+	
+				profiles: [{ id: 0, name: 'Josh Bruno', company: 'Hometeam', description: 'CEO of Hometeam' }, { id: 1, name: 'Elon Musk', company: 'Tesla', description: 'CEO of Tesla' }, { id: 2, name: 'Steve Wozniack', company: 'Primary Data', description: 'Chief Scientist of Primary Data' }, { id: 3, name: 'Elizabeth Holmes', company: 'Theranos', description: 'CEO of Theranos' }]
+			};
+			return _this2;
+		}
+	
+		_createClass(ProfileList, [{
+			key: 'addProfile',
+			value: function addProfile() {
+				event.preventDefault();
+				console.log('addProfile: ' + JSON.stringify(this.state.profile));
+				var updatedProfile = Object.assign([], this.state.profiles);
+				updatedProfile.push(this.state.profile);
+	
+				this.setState({
+					profiles: updatedProfile
+				});
+			}
+		}, {
+			key: 'updateProfile',
+			value: function updateProfile(event) {
+				console.log('updateProfile: ' + event.target.id + ' == ' + event.target.value);
+	
+				var updatedProfile = Object.assign({}, this.state.profile);
+				updatedProfile[event.target.id] = event.target.value;
+				this.setState({
+					profile: updatedProfile
+				});
+			}
+		}, {
+			key: 'selectProfile',
+			value: function selectProfile(profileId) {
+				var selectedProfile = this.state.profiles[profileId];
+				console.log('selectProfile: ' + JSON.stringify(selectedProfile));
+	
+				// this.setState({
+				// 	profiles: selectedProfile
+				// })
 			}
 		}, {
 			key: 'render',

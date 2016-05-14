@@ -13,13 +13,14 @@ class ProfileList extends Component {
 			profile: {
 				name:'',
 				company: ''
+				description: ''
 			},
 
 			profiles: [
-				{id:0, name: 'Josh Bruno', company: 'Hometeam', description: ''},
-				{id:1, name: 'Elon Musk', company: 'Tesla', description: ''},
-				{id:2, name: 'Steve Wozniack', company: 'Primary Data', description: ''},
-				{id:3, name: 'Elizabeth Holmes', company: 'Theranos', description: ''}
+				{id:0, name: 'Josh Bruno', company: 'Hometeam', description: 'CEO of Hometeam'},
+				{id:1, name: 'Elon Musk', company: 'Tesla', description: 'CEO of Tesla'},
+				{id:2, name: 'Steve Wozniack', company: 'Primary Data', description: 'Chief Scientist of Primary Data'},
+				{id:3, name: 'Elizabeth Holmes', company: 'Theranos', description: 'CEO of Theranos'}
 			]
 		}
 	}
@@ -46,7 +47,12 @@ class ProfileList extends Component {
 	}
 
 	selectProfile(profileId){
-		console.log('selectProfile: '+profileId)
+		var selectedProfile = this.state.profiles[profileId]
+		console.log('selectProfile: '+JSON.stringify(selectedProfile))
+
+		// this.setState({
+		// 	profiles: selectedProfile
+		// })
 	}
 
 	render(){
