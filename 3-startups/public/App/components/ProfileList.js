@@ -7,19 +7,19 @@ class ProfileList extends Component {
 		super(props, context)
 		this.addProfile = this.addProfile.bind(this)
 		this.updateProfile = this.updateProfile.bind(this)
+		this.selectProfile = this.selectProfile.bind(this)
 
 		this.state = {
-
 			profile: {
 				name:'',
 				company: ''
 			},
 
 			profiles: [
-				{name: 'Josh Bruno', company: 'Hometeam'},
-				{name: 'Elon Musk', company: 'Tesla'},
-				{name: 'Steve Wozniack', company: 'Primary Data'},
-				{name: 'Elizabeth Holmes', company: 'Theranos'}
+				{id:0, name: 'Josh Bruno', company: 'Hometeam', description: ''},
+				{id:1, name: 'Elon Musk', company: 'Tesla', description: ''},
+				{id:2, name: 'Steve Wozniack', company: 'Primary Data', description: ''},
+				{id:3, name: 'Elizabeth Holmes', company: 'Theranos', description: ''}
 			]
 		}
 	}
@@ -45,11 +45,14 @@ class ProfileList extends Component {
 		})
 	}
 
+	selectProfile(profileId){
+		console.log('selectProfile: '+profileId)
+	}
 
 	render(){
-
+		var _this = this
 		var profileList = this.state.profiles.map(function(profile, i){
-			return <ListItem key={i} text={profile} />
+			return <ListItem key={i} text={profile} click={_this.selectProfile} />
 		})
 
 		return (

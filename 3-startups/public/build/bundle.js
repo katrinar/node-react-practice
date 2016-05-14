@@ -20330,22 +20330,31 @@
 	var ListItem = function (_Component) {
 		_inherits(ListItem, _Component);
 	
-		function ListItem() {
+		function ListItem(props, context) {
 			_classCallCheck(this, ListItem);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).call(this, props, context));
+	
+			_this.handleClick = _this.handleClick.bind(_this);
+			return _this;
 		}
 	
 		_createClass(ListItem, [{
+			key: 'handleClick',
+			value: function handleClick() {
+				console.log('handleClick: ' + JSON.stringify(this.props.text.name));
+				this.props.click(this.props.text.id);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var content = "";
 	
 				if (this.props.text.company == null) {
-					var color = this.props.text.city == 'San Francisco' ? 'red' : 'yellow';
+					var color = this.props.text.city == 'San Francisco' ? 'red' : 'black';
 					content = _react2.default.createElement(
 						'span',
-						{ style: { color: color } },
+						{ onClick: this.handleClick, style: { color: color } },
 						this.props.text.name,
 						', ',
 						this.props.text.city
@@ -20353,7 +20362,7 @@
 				} else {
 					content = _react2.default.createElement(
 						'span',
-						null,
+						{ onClick: this.handleClick },
 						this.props.text.name,
 						', ',
 						this.props.text.company
@@ -20407,21 +20416,21 @@
 		function ProfileList(props, context) {
 			_classCallCheck(this, ProfileList);
 	
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProfileList).call(this, props, context));
+			var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(ProfileList).call(this, props, context));
 	
-			_this.addProfile = _this.addProfile.bind(_this);
-			_this.updateProfile = _this.updateProfile.bind(_this);
+			_this2.addProfile = _this2.addProfile.bind(_this2);
+			_this2.updateProfile = _this2.updateProfile.bind(_this2);
+			_this2.selectProfile = _this2.selectProfile.bind(_this2);
 	
-			_this.state = {
-	
+			_this2.state = {
 				profile: {
 					name: '',
 					company: ''
 				},
 	
-				profiles: [{ name: 'Josh Bruno', company: 'Hometeam' }, { name: 'Elon Musk', company: 'Tesla' }, { name: 'Steve Wozniack', company: 'Primary Data' }, { name: 'Elizabeth Holmes', company: 'Theranos' }]
+				profiles: [{ id: 0, name: 'Josh Bruno', company: 'Hometeam', description: '' }, { id: 1, name: 'Elon Musk', company: 'Tesla', description: '' }, { id: 2, name: 'Steve Wozniack', company: 'Primary Data', description: '' }, { id: 3, name: 'Elizabeth Holmes', company: 'Theranos', description: '' }]
 			};
-			return _this;
+			return _this2;
 		}
 	
 		_createClass(ProfileList, [{
@@ -20448,11 +20457,16 @@
 				});
 			}
 		}, {
+			key: 'selectProfile',
+			value: function selectProfile(profileId) {
+				console.log('selectProfile: ' + profileId);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
-	
+				var _this = this;
 				var profileList = this.state.profiles.map(function (profile, i) {
-					return _react2.default.createElement(_ListItem2.default, { key: i, text: profile });
+					return _react2.default.createElement(_ListItem2.default, { key: i, text: profile, click: _this.selectProfile });
 				});
 	
 				return _react2.default.createElement(
